@@ -1,0 +1,139 @@
+﻿@model KontinentService.Models.ToursModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Редактирование тура</h2>
+
+<h5>@Model.Title</h5>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShortDescription" class="control-label"></label>
+                <input asp-for="ShortDescription" class="form-control" />
+                <span asp-validation-for="ShortDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @if (Model.Image != null)
+                {
+                    <b>Установленное изображение:</b><br />
+                    <img src="@Url.Content(Model.Image)" style="width:150px;" />
+                    <br />
+                    <b>Выберите новое изображение для загрузки:</b><br /><br />
+                }
+                else
+                {
+                    <b>Изображение не добавлено</b><br />
+                    <b>Выберите изображение для загрузки:</b><br /><br />
+                }
+                <input type="file" name="imageFile" />
+                <input type="hidden" asp-for="Image" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Discount" class="control-label"></label>
+                <input asp-for="Discount" class="form-control" />
+                <span asp-validation-for="Discount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UrlRus" class="control-label"></label>
+                <input asp-for="UrlRus" class="form-control" />
+                <span asp-validation-for="UrlRus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpecialDescription" class="control-label"></label>
+                <input asp-for="SpecialDescription" class="form-control" />
+                <span asp-validation-for="SpecialDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfOrders" class="control-label"></label>
+                <input asp-for="NumberOfOrders" class="form-control" />
+                <span asp-validation-for="NumberOfOrders" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IndexOnPage" class="control-label"></label>
+                <input asp-for="IndexOnPage" class="form-control" />
+                <span asp-validation-for="IndexOnPage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateIn" class="control-label"></label>
+                <input asp-for="DateIn" class="form-control" />
+                <span asp-validation-for="DateIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOut" class="control-label"></label>
+                <input asp-for="DateOut" class="form-control" />
+                <span asp-validation-for="DateOut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Route" class="control-label"></label>
+                <input asp-for="Route" class="form-control" />
+                <span asp-validation-for="Route" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsHot" /> @Html.DisplayNameFor(model => model.IsHot)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsTour" /> @Html.DisplayNameFor(model => model.IsTour)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsBustour" /> @Html.DisplayNameFor(model => model.IsBustour)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsCruise" /> @Html.DisplayNameFor(model => model.IsCruise)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubcategoryId" class="control-label"></label>
+                <select asp-for="SubcategoryId" class="form-control" asp-items="ViewBag.SubcategoryId"></select>
+                <span asp-validation-for="SubcategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить изменения" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">&lt; К списку туров</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

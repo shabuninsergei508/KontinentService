@@ -1,0 +1,37 @@
+﻿@model KontinentService.Models.FilterAllowablesModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h5>@Model.Title</h5>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.Filter)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Filter.Title)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
+    <a asp-action="Index" asp-route-id="@Model.Filter.Id">&lt; К списку значений: @Model.Filter.Title</a>
+</div>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<KontinentService.Models.FilterAllowablesModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Filter != null)
+{
+    <h2>Значения фильтра: @ViewBag.Filter.Title</h2>
+}
+else
+{
+    <h2>Значения фильтров</h2>
+}
+
+
+    <p>
+
+        @if (ViewBag.Filter != null)
+        {
+            <a asp-action="Create" asp-route-id="@ViewBag.Filter.Id">Добавить новое</a>
+        }
+        else
+        {
+            <a asp-action="Create">Добавить новое</a>
+        }      
+    </p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Filter)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Image)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Filter.Id)
+                    </td>*@
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="delete-button">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index" asp-controller="Filters">&lt; К списку фильтров</a>
+</div>

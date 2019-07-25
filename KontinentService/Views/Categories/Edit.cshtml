@@ -1,0 +1,69 @@
+﻿@model KontinentService.Models.CategoriesModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Редактирование категории</h2>
+
+<h5>@Model.Title</h5>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShortDescription" class="control-label"></label>
+                <input asp-for="ShortDescription" class="form-control" />
+                <span asp-validation-for="ShortDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @if (Model.Image != null)
+                {
+                    <b>Установленное изображение:</b><br />
+                    <img src="@Url.Content(Model.Image)" style="width:150px;" />
+                    <br />
+                    <b>Выберите новое изображение для загрузки:</b><br /><br />
+                }
+                else
+                {
+                    <b>Изображение не добавлено</b><br />
+                    <b>Выберите изображение для загрузки:</b><br /><br />
+                }
+
+                <input type="file" name="imageFile" />
+                <input type="hidden" asp-for="Image" class="form-control" />
+            </div>
+            <input type="hidden" asp-for="UrlRus" class="form-control" />
+
+            @*<div class="form-group">
+            <label asp-for="UrlRus" class="control-label"></label>
+            <input asp-for="UrlRus" class="form-control" />
+            <span asp-validation-for="UrlRus" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">&lt; К списку категорий</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,40 @@
+﻿@model KontinentService.Models.FilterAllowablesModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>УДАЛЕНИЕ</h2>
+
+<h3>Вы действительно хотите удалить этот элемент?</h3>
+<div>
+    <h5>@Model.Title</h5>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.Filter)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Filter.Title)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="УДАЛИТЬ" class="btn btn-default" /> |
+        <a asp-action="Index" asp-route-id="@Model.Filter.Id">&lt; К списку значений: @Model.Filter.Title</a>
+    </form>
+</div>

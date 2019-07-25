@@ -1,0 +1,65 @@
+﻿@model KontinentService.Models.FilterAllowablesModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Filter != null)
+{
+    <h2>Добавление значения фильтра: @ViewBag.Filter.Title</h2>
+}
+else
+{
+    <h2>Добавление значения фильтра</h2>
+}
+
+<h5>Новое значение</h5>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Image" class="form-control" />
+            @*<div class="form-group">
+                    <label asp-for="Image" class="control-label"></label>
+                    <input asp-for="Image" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>*@
+            @if (ViewBag.Filter != null)
+            {
+                <input type="hidden" asp-for="FilterId" value="@ViewBag.Filter.Id" />
+            }
+            else
+            {
+                <div class="form-group">
+                    <label asp-for="FilterId" class="control-label"></label>
+                    <select asp-for="FilterId" class="form-control" asp-items="ViewBag.FilterId"></select>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Добавить" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @if (ViewBag.Filter != null)
+    {
+    <a asp-action="Index" asp-route-id="@ViewBag.Filter.Id">&lt; К списку значений: @ViewBag.Filter.Title</a>
+    }
+    else
+    {
+    <a asp-action="Index">&lt; К списку значений</a>
+    } 
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

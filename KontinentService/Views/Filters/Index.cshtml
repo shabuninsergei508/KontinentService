@@ -1,0 +1,43 @@
+﻿@model IEnumerable<KontinentService.Models.FiltersModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Фильтры</h2>
+
+<p>
+    <a asp-action="Create">Добавить новый</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+           <td>
+                @Html.DisplayFor(modelItem => item.Category.Title)
+            </td>       
+           <td>
+               <a asp-controller="FilterAllowables" asp-action="Index" asp-route-id="@item.Id">Значения фильтра</a>  |
+               <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+               <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+               <a asp-action="Delete" asp-route-id="@item.Id" class="delete-button">Удалить</a>
+           </td>
+        </tr>
+}
+    </tbody>
+</table>

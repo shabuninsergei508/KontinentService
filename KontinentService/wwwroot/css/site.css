@@ -35,3 +35,27 @@ body {
         display: none;
     }
 }
+
+.btn-default {
+    background-color: #337ab7;
+    color: white;
+    transition-duration: 0.5s;
+    border: 0px;
+}
+
+.delete-button{
+    color:#d50000;
+}
+.delete-button:hover {
+    color: #d50000;
+}
+/*Игрули с анимациями*/
+    .btn-default:hover {
+        background-color: #337ab7;
+        color: white;
+        box-shadow: inset 0 0 0 20px #C10101;
+        -webkit-transform: rotateZ(15deg);
+        -ms-transform: rotateZ(20deg);
+        transform: rotateZ(15deg);
+        transition-duration: 0.5s;
+    }
